@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Categorias</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1 th:text="'Sistema de Biblioteca'"></h1>
+<nav>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/livros/autores}">Autores</a>
+    <a th:href="@{/livros/categorias}">Categorias</a>
+    <a th:href="@{/livros/usuarios}">Usuários</a>
+    <a th:href="@{/livros/emprestimos}">Empréstimos</a>
+</nav>
+
+<h2>Gerenciamento de Categorias</h2>
+<p>Lista de categorias cadastradas na biblioteca.</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome da Categoria</th>
+        <th>Descrição</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categoria : ${categorias}">
+        <td th:text="${categoria.id}">1</td>
+        <td th:text="${categoria.nome}">Ficção Científica</td>
+        <td th:text="${categoria.descricao}">Livros de ficção e fantasia</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

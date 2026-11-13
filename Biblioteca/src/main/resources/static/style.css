@@ -1,0 +1,22 @@
+body{
+    background-color: #569c4f;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    background: aliceblue;
+    gap: 20px;
+    justify-content: center; /* Centraliza os links na horizontal */
+    align-items: center;     /* Centraliza os links na vertical */
+    padding: 15px;           /* Dá um respiro interno para o fundo ficar bonito */
+}
+nav a{
+    text-decoration: none;
+    color:black;
+}
+
+nav a:hover{
+    text-decoration: none;
+    color: green;
+}

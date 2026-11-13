@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Autores</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1 th:text="'Sistema de Biblioteca'"></h1>
+
+<nav>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/livros/autores}">Autores</a>
+    <a th:href="@{/livros/categorias}">Categorias</a>
+    <a th:href="@{/livros/usuarios}">Usuários</a>
+    <a th:href="@{/livros/emprestimos}">Empréstimos</a>
+</nav>
+
+<h2>Gerenciamento de Autores</h2>
+<p>Lista de autores cadastrados na biblioteca.</p>
+
+<!-- Exemplo de estrutura pronta para exibir os autores -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome do Autor</th>
+        <th>Nacionalidade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Quando você enviar uma lista "autores" pelo Controller, o Thymeleaf preenche aqui -->
+    <tr th:each="autor : ${autores}">
+        <td th:text="${autor.id}">1</td>
+        <td th:text="${autor.nome}">Machado de Assis</td>
+        <td th:text="${autor.nacionalidade}">Brasileira</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

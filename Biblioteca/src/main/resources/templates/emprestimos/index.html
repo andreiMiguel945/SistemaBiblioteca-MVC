@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Empréstimos</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1 th:text="'Sistema de Biblioteca'"></h1>
+<nav>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/livros/autores}">Autores</a>
+    <a th:href="@{/livros/categorias}">Categorias</a>
+    <a th:href="@{/livros/usuarios}">Usuários</a>
+    <a th:href="@{/livros/emprestimos}">Empréstimos</a>
+</nav>
+
+<h2>Controle de Empréstimos</h2>
+<p>Histórico e empréstimos ativos.</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Livro</th>
+        <th>Usuário</th>
+        <th>Data de Empréstimo</th>
+        <th>Data de Devolução</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emprestimo : ${emprestimos}">
+        <td th:text="${emprestimo.id}"></td>
+        <td th:text="${emprestimo.livro.titulo}"></td>
+        <td th:text="${emprestimo.nome}"></td>
+        <td th:text="${emprestimo.dataEmprestimo}"></td>
+        <td th:text="${emprestimo.dataDevolucao}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

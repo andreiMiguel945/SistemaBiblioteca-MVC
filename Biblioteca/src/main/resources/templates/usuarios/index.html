@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Usuários</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1 th:text="'Sistema de Biblioteca'"></h1>
+<nav>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/livros/autores}">Autores</a>
+    <a th:href="@{/livros/categorias}">Categorias</a>
+    <a th:href="@{/livros/usuarios}">Usuários</a>
+    <a th:href="@{/livros/emprestimos}">Empréstimos</a>
+</nav>
+
+<h2>Gerenciamento de Usuários</h2>
+<p>Lista de leitores/usuários cadastrados na biblioteca.</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="usuario : ${usuarios}">
+        <td th:text="${usuario.id}">1</td>
+        <td th:text="${usuario.nome}">João Silva</td>
+        <td th:text="${usuario.email}">joao@email.com</td>
+        <td th:text="${usuario.telefone}">(41) 99999-9999</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
