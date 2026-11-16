@@ -2,12 +2,12 @@ package com.Biblioteca.Biblioteca.Model;
 
 public class Emprestimo {
     private int id;
-    private String livroEmprestado;
+    private Livro livroEmprestado;
     private Usuario Usuario;
     private String data_de_emprestimo;
     private String data_de_devolucao;
 
-    public Emprestimo(int id, String livroEmprestado, Usuario usuario, String data_de_emprestimo, String data_de_devolucao) {
+    public Emprestimo(int id, Livro livroEmprestado, Usuario usuario, String data_de_emprestimo, String data_de_devolucao) {
         this.id = id;
         this.livroEmprestado = livroEmprestado;
         Usuario = usuario;
@@ -23,11 +23,11 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public String getLivroEmprestado() {
+    public Livro getLivroEmprestado() {
         return livroEmprestado;
     }
 
-    public void setLivroEmprestado(String livroEmprestado) {
+    public void setLivroEmprestado(Livro livroEmprestado) {
         this.livroEmprestado = livroEmprestado;
     }
 

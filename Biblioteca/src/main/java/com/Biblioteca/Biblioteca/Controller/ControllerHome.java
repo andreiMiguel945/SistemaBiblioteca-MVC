@@ -24,15 +24,15 @@ public class ControllerHome {
     //Aplcação Livro
     private final Livro livro = new Livro(1,"O pequeno Principe", "Fulano de tal","Só Deus sabe");
     private final Livro livro2 = new Livro(1,"O Diário de Anne Frank", "Anne Frank","1950 ou menos?");
-    private List<Livro> livros = Arrays.asList(livro, livro2);
+    private final List<Livro> livros = Arrays.asList(livro, livro2);
 
     //Aplicação Usuário
     private final Usuario usuario = new Usuario(1,"Andrei","andrei@gmail.com","433939393939");
     private final Usuario usuario2 = new Usuario(2,"Pedri","pedri@gmail.com","4367676767676");
     private List<Usuario> usuarios = Arrays.asList(usuario,usuario2);
     //Aplicação Emprestimo
-    private final Emprestimo emprestimo = new Emprestimo(1,"O Diário de Anne Frank",usuario,"22/01/2026","22/02/2026");
-    private final Emprestimo emprestimo2 = new Emprestimo(2,"O pequeno Principe",usuario2,"06/07/2026","06/08/2026");
+    private final Emprestimo emprestimo = new Emprestimo(1,livro,usuario,"22/01/2026","22/02/2026");
+    private final Emprestimo emprestimo2 = new Emprestimo(2,livro2,usuario2,"06/07/2026","06/08/2026");
     private List<Emprestimo> emprestimos = Arrays.asList(emprestimo,emprestimo2);
 
     @GetMapping("")
