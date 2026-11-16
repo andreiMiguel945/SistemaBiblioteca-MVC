@@ -26,12 +26,13 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Quando você enviar uma lista "autores" pelo Controller, o Thymeleaf preenche aqui -->
     <tr th:each="livro : ${livros}">
         <td th:text="${livro.id}"></td>
         <td th:text="${livro.titulo}"></td>
         <td th:text="${livro.autor}"></td>
         <td th:text="${livro.data_de_lancamento}"></td>
+        <td th:text="${livro.categoria.nome}"></td>
+
     </tr>
     </tbody>
 </table>
