@@ -1,22 +1,106 @@
-body{
-    background-color: #569c4f;
-    margin: 0;
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    background-color: #4a8b44; /* Verde um pouco mais suave para cansar menos a vista */
+    color: #2c3e50;
+    margin: 0;
+    padding-bottom: 40px;
+}
+
+/* Título Principal */
+h1 {
+    background-color: #2e5d2a;
+    color: #ffffff;
+    margin: 0;
+    padding: 25px 20px;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+/* Menu de Navegação */
 nav {
     display: flex;
-    background: aliceblue;
-    gap: 20px;
-    justify-content: center; /* Centraliza os links na horizontal */
-    align-items: center;     /* Centraliza os links na vertical */
-    padding: 15px;           /* Dá um respiro interno para o fundo ficar bonito */
-}
-nav a{
-    text-decoration: none;
-    color:black;
+    background-color: #f4f9f4;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 35px;
+    flex-wrap: wrap;
 }
 
-nav a:hover{
+nav a {
     text-decoration: none;
-    color: green;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+nav a:hover {
+    background-color: #4a8b44;
+    color: #ffffff;
+}
+
+/* Subtítulos e parágrafos centralizados */
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+p {
+    text-align: center;
+    color: #e8f5e9;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* Estilização da Tabela (efeito Card branco moderno) */
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse; /* Remove aquela borda dupla antiga do border="1" */
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+thead {
+    background-color: #2e5d2a;
+    color: #ffffff;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* Linhas alternadas (efeito zebra) e destaque ao passar o mouse */
+tbody tr:nth-child(even) {
+    background-color: #f8fbf8;
+}
+
+tbody tr:hover {
+    background-color: #e6f2e5;
+    transition: background-color 0.2s ease;
 }
