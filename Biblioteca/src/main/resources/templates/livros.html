@@ -13,8 +13,8 @@
     <a th:href="@{/livros/categorias}">Categorias</a>
     <a th:href="@{/livros/usuarios}">Usuários</a>
     <a th:href="@{/livros/emprestimos}">Empréstimos</a>
+    <a class=link-para-cadastro" th:href="@{/livros/cadastrarLivro}">Cadastrar um livro</a>
 </nav>
-
 
 <table border="1">
     <thead>
@@ -23,6 +23,7 @@
         <th>Titulo</th>
         <th>Nome do Autor</th>
         <th>Data de Lançamento</th>
+        <th>Categoria</th>
     </tr>
     </thead>
     <tbody>
@@ -32,7 +33,6 @@
         <td th:text="${livro.autor}"></td>
         <td th:text="${livro.data_de_lancamento}"></td>
         <td th:text="${livro.categoria.nome}"></td>
-
     </tr>
     </tbody>
 </table>
