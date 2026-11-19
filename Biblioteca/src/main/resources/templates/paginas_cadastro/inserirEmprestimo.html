@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserir Empréstimo</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/emprestimos}">Voltar</a>
+</nav>
+
+<h2>Registrar Novo Empréstimo</h2>
+<p>Selecione o livro, o usuário e as datas para registrar o empréstimo.</p>
+
+<form class="form-cadastro" th:action="@{/livros/inserirEmprestimo}" th:object="${emprestimo}" method="post">
+
+    <div class="campo-input">
+        <label for="livro"><strong>Livro Emprestado:</strong></label><br>
+        <select id="livro" name="livroId" required>
+            <option value="">Selecione um livro...</option>
+            <option th:each="liv : ${livros}" th:value="${liv.id}" th:text="${liv.titulo}"></option>
+        </select>
+    </div>
+
+    <div class="campo-input">
+        <label for="usuario"><strong>Usuário:</strong></label><br>
+        <select id="usuario" name="usuarioId" required>
+            <option value="">Selecione um usuário...</option>
+            <option th:each="usu : ${usuarios}" th:value="${usu.id}" th:text="${usu.nome}"></option>
+        </select>
+    </div>
+
+    <div class="campo-input">
+        <label for="dataEmprestimo"><strong>Data de Empréstimo:</strong></label><br>
+        <input type="text" id="dataEmprestimo" th:field="*{data_de_emprestimo}" placeholder="Ex: 19/11/2026" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="dataDevolucao"><strong>Data de Devolução:</strong></label><br>
+        <input type="text" id="dataDevolucao" th:field="*{data_de_devolucao}" placeholder="Ex: 26/11/2026" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Salvar Empréstimo
+    </button>
+</form>
+
+</body>
+</html>

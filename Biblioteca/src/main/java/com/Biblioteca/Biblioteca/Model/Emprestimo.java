@@ -15,6 +15,7 @@ public class Emprestimo {
         this.data_de_devolucao = data_de_devolucao;
     }
 
+    public Emprestimo(){}
     public int getId() {
         return id;
     }

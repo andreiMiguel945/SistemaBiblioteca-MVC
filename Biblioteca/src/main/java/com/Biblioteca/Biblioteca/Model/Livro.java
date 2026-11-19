@@ -15,6 +15,10 @@ public class Livro {
         this.categoria = categoria;
     }
 
+    public Livro() {
+
+    }
+
     public int getId() {
         return id;
     }

@@ -11,6 +11,9 @@ public class Autor {
         this.nacionalidade = nacionalidade;
     }
 
+    public Autor(){
+    }
+
     public int getId() {
         return id;
     }

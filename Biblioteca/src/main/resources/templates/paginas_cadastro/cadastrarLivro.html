@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Livro</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros}">Voltar</a>
+</nav>
+
+<h2>Cadastrar Novo Livro</h2>
+<p>Preencha os dados abaixo para adicionar um livro ao acervo.</p>
+
+<form class="form-cadastro" th:action="@{/livros/cadastrarLivro}" th:object="${livro}" method="post">
+
+    <div class="campo-input">
+        <label for="titulo"><strong>Título:</strong></label><br>
+        <input type="text" id="titulo" th:field="*{titulo}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="autor"><strong>Autor:</strong></label><br>
+        <input type="text" id="autor" th:field="*{autor}" required>
+    </div>
+
+    <div>
+        <label for="data"><strong>Data de Lançamento:</strong></label><br>
+        <input type="text" id="data" th:field="*{data_de_lancamento}" placeholder="Ex: 1943" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="categoria"><strong>Categoria:</strong></label><br>
+        <select id="categoria" name="categoriaId" required>
+            <option value="">Selecione uma categoria...</option>
+            <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Salvar Livro
+    </button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Autor</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/autores}">Voltar</a>
+</nav>
+
+<h2>Cadastrar Novo Autor</h2>
+<p>Preencha os dados abaixo para adicionar um autor ao sistema.</p>
+
+<form class="form-cadastro" th:action="@{/livros/cadastrarAutor}" th:object="${autor}" method="post">
+
+    <div class="campo-input">
+        <label for="nome"><strong>Nome do Autor:</strong></label><br>
+        <input type="text" id="nome" th:field="*{nome}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="nacionalidade"><strong>Nacionalidade:</strong></label><br>
+        <input type="text" id="nacionalidade" th:field="*{nacionalidade}" placeholder="Ex: Brasileira" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Salvar Autor
+    </button>
+</form>
+
+</body>
+</html>

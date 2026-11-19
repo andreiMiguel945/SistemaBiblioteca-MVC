@@ -13,6 +13,10 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public Usuario(){
+
+    }
+
     public int getId() {
         return id;
     }

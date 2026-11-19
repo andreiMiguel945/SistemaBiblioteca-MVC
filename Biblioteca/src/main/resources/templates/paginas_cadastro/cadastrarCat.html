@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Categoria</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/categorias}">Voltar</a>
+</nav>
+
+<h2>Cadastrar Nova Categoria</h2>
+<p>Preencha os dados abaixo para adicionar uma categoria ao sistema.</p>
+
+<form class="form-cadastro" th:action="@{/livros/cadastrarCat}" th:object="${categoria}" method="post">
+
+    <div class="campo-input">
+        <label for="nome"><strong>Nome da Categoria:</strong></label><br>
+        <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Suspense" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="descricao"><strong>Descrição:</strong></label><br>
+        <input type="text" id="descricao" th:field="*{descricao}" placeholder="Ex: Histórias de mistério e investigação" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Salvar Categoria
+    </button>
+</form>
+
+</body>
+</html>
