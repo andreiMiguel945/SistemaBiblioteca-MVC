@@ -27,15 +27,26 @@
         <th>Usuário</th>
         <th>Data de Empréstimo</th>
         <th>Data de Devolução</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="emprestimo : ${emprestimos}">
         <td th:text="${emprestimo.id}"></td>
-        <td th:text="${emprestimo.livroEmprestado.titulo}"></td>
+        <td th:text="${emprestimo.livroEmprestado?.titulo}"></td>
         <td th:text="${emprestimo.usuario.nome}"></td>
         <td th:text="${emprestimo.data_de_emprestimo}"></td>
         <td th:text="${emprestimo.data_de_devolucao}"></td>
+        <td>
+            <a th:href="@{/livros/editarEmprestimo/{id}(id=${emprestimo.id})}">Editar</a>
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            &nbsp;
+            <a href="javascript:void(0);"
+               th:data-url="@{/livros/excluirEmprestimo/{id}(id=${emprestimo.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar o empréstimo do livro ${emprestimo.livroEmprestado.titulo}?|"
+               onclick="if (confirm(this.getAttribute('data-confirm-delete'))) { fetch(this.getAttribute('data-url'), { method: 'DELETE' }).then(() => window.location.reload()); } return false;">
+                remover</a>
+        </td>
     </tr>
     </tbody>
 </table>

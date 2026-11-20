@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/usuarios}">Voltar</a>
+</nav>
+
+<h2>Editar Usuário</h2>
+<p>Altere os dados abaixo e clique em atualizar.</p>
+
+<form class="form-cadastro" th:action="@{/livros/editarUsuario/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="campo-input">
+        <label for="nome"><strong>Nome:</strong></label><br>
+        <input type="text" id="nome" th:field="*{nome}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="email"><strong>E-mail:</strong></label><br>
+        <input type="email" id="email" th:field="*{email}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="telefone"><strong>Telefone:</strong></label><br>
+        <input type="text" id="telefone" th:field="*{telefone}" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Atualizar Usuário
+    </button>
+</form>
+
+</body>
+</html>

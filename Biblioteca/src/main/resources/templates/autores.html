@@ -27,6 +27,8 @@
         <th>ID</th>
         <th>Nome do Autor</th>
         <th>Nacionalidade</th>
+        <th>Ações</th>
+
     </tr>
     </thead>
     <tbody>
@@ -35,6 +37,16 @@
         <td th:text="${autor.id}">1</td>
         <td th:text="${autor.nome}">Machado de Assis</td>
         <td th:text="${autor.nacionalidade}">Brasileira</td>
+        <td>
+            <a th:href="@{/livros/editarAutor/{id}(id=${autor.id})}">Editar</a>
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            &nbsp;
+            <a href="javascript:void(0);"
+               th:data-url="@{/livros/excluirAutor/{id}(id=${autor.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar ${autor.nome}?|"
+               onclick="if (confirm(this.getAttribute('data-confirm-delete'))) { fetch(this.getAttribute('data-url'), { method: 'DELETE' }).then(() => window.location.reload()); } return false;">
+                remover</a>
+        </td>
     </tr>
     </tbody>
 </table>

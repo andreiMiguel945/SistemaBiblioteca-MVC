@@ -23,6 +23,7 @@
         <th>Nome do Autor</th>
         <th>Data de Lançamento</th>
         <th>Categoria</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -31,7 +32,17 @@
         <td th:text="${livro.titulo}"></td>
         <td th:text="${livro.autor}"></td>
         <td th:text="${livro.data_de_lancamento}"></td>
-        <td th:text="${livro.categoria.nome}"></td>
+        <td th:text="${livro.categoria?.nome}"></td>
+        <td>
+            <a th:href="@{/livros/editarLivro/{id}(id=${livro.id})}">Editar</a>
+            &nbsp;
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            <a href="javascript:void(0);"
+               th:data-url="@{/livros/excluirLivro/{id}(id=${livro.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar ${livro.titulo}?|"
+               onclick="if (confirm(this.getAttribute('data-confirm-delete'))) { fetch(this.getAttribute('data-url'), { method: 'DELETE' }).then(() => window.location.reload()); } return false;">
+                remover</a>
+        </td>
     </tr>
     </tbody>
 </table>

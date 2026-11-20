@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Empréstimo</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/emprestimos}">Voltar</a>
+</nav>
+
+<h2>Editar Empréstimo</h2>
+<p>Altere os dados do empréstimo abaixo e clique em atualizar.</p>
+
+<form class="form-cadastro" th:action="@{/livros/editarEmprestimo/{id}(id=${emprestimo.id})}" th:object="${emprestimo}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="campo-input">
+        <label for="livro"><strong>Livro Emprestado:</strong></label><br>
+        <select id="livro" name="livroId" required>
+            <option value="">Selecione um livro...</option>
+            <option th:each="liv : ${livros}"
+                    th:value="${liv.id}"
+                    th:text="${liv.titulo}"
+                    th:selected="${emprestimo.livroEmprestado != null and liv.id == emprestimo.livroEmprestado.id}">
+            </option>
+        </select>
+    </div>
+
+    <div class="campo-input">
+        <label for="usuario"><strong>Usuário:</strong></label><br>
+        <select id="usuario" name="usuarioId" required>
+            <option value="">Selecione um usuário...</option>
+            <option th:each="user : ${usuarios}"
+                    th:value="${user.id}"
+                    th:text="${user.nome}"
+                    th:selected="${emprestimo.usuario != null and user.id == emprestimo.usuario.id}">
+            </option>
+        </select>
+    </div>
+
+    <div class="campo-input">
+        <label for="data_de_emprestimo"><strong>Data de Empréstimo:</strong></label><br>
+        <input type="text" id="data_de_emprestimo" th:field="*{data_de_emprestimo}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="data_de_devolucao"><strong>Data de Devolução:</strong></label><br>
+        <input type="text" id="data_de_devolucao" th:field="*{data_de_devolucao}" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Atualizar Empréstimo
+    </button>
+</form>
+
+</body>
+</html>

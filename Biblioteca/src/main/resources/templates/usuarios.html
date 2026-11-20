@@ -26,6 +26,7 @@
         <th>Nome</th>
         <th>E-mail</th>
         <th>Telefone</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +35,16 @@
         <td th:text="${usuario.nome}">João Silva</td>
         <td th:text="${usuario.email}">joao@email.com</td>
         <td th:text="${usuario.telefone}">(41) 99999-9999</td>
+        <td>
+            <a th:href="@{/livros/editarUsuario/{id}(id=${usuario.id})}">Editar</a>
+            &nbsp;
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            <a href="javascript:void(0);"
+               th:data-url="@{/livros/excluirUsuario/{id}(id=${usuario.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar ${usuario.nome}?|"
+               onclick="if (confirm(this.getAttribute('data-confirm-delete'))) { fetch(this.getAttribute('data-url'), { method: 'DELETE' }).then(() => window.location.reload()); } return false;">
+                remover</a>
+        </td>
     </tr>
     </tbody>
 </table>

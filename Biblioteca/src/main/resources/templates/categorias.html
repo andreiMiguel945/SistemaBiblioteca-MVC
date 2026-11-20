@@ -25,6 +25,7 @@
         <th>ID</th>
         <th>Nome da Categoria</th>
         <th>Descrição</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +33,15 @@
         <td th:text="${categoria.id}">1</td>
         <td th:text="${categoria.nome}">Ficção Científica</td>
         <td th:text="${categoria.descricao}">Livros de ficção e fantasia</td>
+        <td>
+            <a th:href="@{/livros/editarCategoria/{id}(id=${categoria.id})}">Editar</a>
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            <a href="javascript:void(0);"
+               th:data-url="@{/livros/excluirCategoria/{id}(id=${categoria.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar ${categoria.nome}?|"
+               onclick="if (confirm(this.getAttribute('data-confirm-delete'))) { fetch(this.getAttribute('data-url'), { method: 'DELETE' }).then(() => window.location.reload()); } return false;">
+                remover</a>
+        </td>
     </tr>
     </tbody>
 </table>

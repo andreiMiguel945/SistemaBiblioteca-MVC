@@ -67,6 +67,40 @@ public class ControllerHome {
     }
 
     //----------PUT-LIVRO--------------//
+    @GetMapping("/editarLivro/{id}")
+    public String abrirEdicaoLivro(@PathVariable("id") int id, Model model) {
+        for (Livro liv : livros) {
+            if (liv.getId() == id) {
+                model.addAttribute("livro", liv);
+                break;
+            }
+        }
+        model.addAttribute("categorias",categorias);
+        return "paginas_edicao/editarLivro"; // Aponta direto para templates/editarUsuario.html
+    }
+
+    @PutMapping("/editarLivro/{id}" )
+    public String atualizarLivro(@PathVariable("id") int id, @ModelAttribute Livro livroAtualizado,  @RequestParam("categoriaId") int categoriaId) {
+        for (Livro liv : livros) {
+            if (liv.getId() == id) {
+                liv.setTitulo(livroAtualizado.getTitulo());
+                liv.setAutor(livroAtualizado.getAutor());
+                liv.setData_de_lancamento(livroAtualizado.getData_de_lancamento());
+                liv.setCategoria(livroAtualizado.getCategoria());
+                break;
+            }
+        }
+        return "redirect:/livros";
+    }
+
+    //----------DELETE-LIVRO--------------//
+
+    @DeleteMapping("/excluirLivro/{id}")
+    @ResponseBody
+    public String excluirLivro(@PathVariable("id") int id) {
+        livros.removeIf(liv -> liv.getId() == id);
+        return "ok";
+    }
 
 
 
@@ -94,6 +128,40 @@ public class ControllerHome {
         return "redirect:/livros/autores";
     }
 
+    //---------------PUT-AUTOR-----------------//
+    @GetMapping("/editarAutor/{id}")
+    public String abrirEdicaoAutor(@PathVariable("id") int id, Model model) {
+        for (Autor aut : autores) {
+            if (aut.getId() == id) {
+                model.addAttribute("autor", aut);
+                break;
+            }
+        }
+        return "paginas_edicao/editarAutor";
+    }
+
+    @PutMapping("/editarAutor/{id}")
+    public String atualizarAutor(@PathVariable("id") int id,
+                                 @ModelAttribute Autor autorAtualizado) {
+        for (Autor aut : autores) {
+            if (aut.getId() == id) {
+                aut.setNome(autorAtualizado.getNome());
+                aut.setNacionalidade(autorAtualizado.getNacionalidade());
+                break;
+            }
+        }
+        return "redirect:/livros/autores";
+    }
+
+    //---------------DELETE-AUTOR--------------//
+    @DeleteMapping("/excluirAutor/{id}")
+    @ResponseBody
+    public String excluirAutor(@PathVariable("id") int id) {
+        autores.removeIf(autor -> autor.getId() == id);
+        return "ok";
+    }
+
+
     //Aplicações dos métodos da categoria
 
     //---------GET-CATEGORIA------------------///
@@ -117,6 +185,39 @@ public class ControllerHome {
         categorias.add(categoria);
         return "redirect:/livros/categorias";
     }
+
+    //------------PUT-CATEGORIA--------//
+    @GetMapping("/editarCategoria/{id}")
+    public String abrirEdicaoCategoria(@PathVariable("id") int id, Model model) {
+        for (Categoria cat : categorias) {
+            if (cat.getId() == id) {
+                model.addAttribute("categoria", cat);
+                break;
+            }
+        }
+        return "paginas_edicao/editarCategoria";
+    }
+
+    @PutMapping("/editarCategoria/{id}")
+    public String atualizarCategoria(@PathVariable("id") int id, @ModelAttribute Categoria categoriaAtualizada) {
+        for (Categoria cat : categorias) {
+            if (cat.getId() == id) {
+                cat.setNome(categoriaAtualizada.getNome());
+                cat.setDescricao(categoriaAtualizada.getDescricao());
+                break;
+            }
+        }
+        return "redirect:/livros/categorias";
+    }
+
+    //---------------DELETE-CATEGORIA--------------//
+    @DeleteMapping("/excluirCategoria/{id}")
+    @ResponseBody
+    public String excluirCategoria(@PathVariable("id") int id) {
+        categorias.removeIf(categoria -> categoria.getId() == id);
+        return "ok";
+    }
+
 
 
     //Aplicações dos métodos do usuário
@@ -143,6 +244,39 @@ public class ControllerHome {
         return "redirect:/livros/usuarios";
     }
 
+    //-----------------PUT-USUARIO--------------//
+    @GetMapping("/editarUsuario/{id}")
+    public String abrirEdicaoUsuario(@PathVariable("id") int id, Model model) {
+        for (Usuario user : usuarios) {
+            if (user.getId() == id) {
+                model.addAttribute("usuario", user);
+                break;
+            }
+        }
+        return "paginas_edicao/editarUsuario"; // Aponta direto para templates/editarUsuario.html
+    }
+
+    @PutMapping("/editarUsuario/{id}")
+    public String atualizarUsuario(@PathVariable("id") int id, @ModelAttribute Usuario usuarioAtualizado) {
+        for (Usuario user : usuarios) {
+            if (user.getId() == id) {
+                user.setNome(usuarioAtualizado.getNome());
+                user.setEmail(usuarioAtualizado.getEmail());
+                user.setTelefone(usuarioAtualizado.getTelefone());
+                break;
+            }
+        }
+        return "redirect:/livros/usuarios";
+    }
+
+
+    //---------------DELETE-USUARIO--------------//
+    @DeleteMapping("/excluirUsuario/{id}")
+    @ResponseBody
+    public String excluirUsuario(@PathVariable("id") int id) {
+        usuarios.removeIf(usuario -> usuario.getId() == id);
+        return "ok";
+    }
 
     //Aplicações dos métodos do empréstimo
 
@@ -164,7 +298,8 @@ public class ControllerHome {
     }
 
     @PostMapping("/inserirEmprestimo")
-    public String cadastrarEmprestimo(@ModelAttribute Emprestimo emprestimo, @RequestParam("livroId") int livroId, @RequestParam("usuarioId") int usuarioId) {
+    public String cadastrarEmprestimo(@ModelAttribute Emprestimo emprestimo, @RequestParam("livroId") int livroId,
+                                      @RequestParam("usuarioId") int usuarioId) {
         emprestimo.setId(emprestimos.size() + 1);
         for (Livro liv : livros) {
             if (liv.getId() == livroId) {
@@ -181,7 +316,53 @@ public class ControllerHome {
         emprestimos.add(emprestimo);
         return "redirect:/livros/emprestimos";
     }
+    //---------------PUT-EMPRESTIMO-----------------//
+    @GetMapping("/editarEmprestimo/{id}")
+    public String abrirEdicaoEmprestimo(@PathVariable("id") int id, Model model) {
+        for (Emprestimo emp : emprestimos) {
+            if (emp.getId() == id) {
+                model.addAttribute("emprestimo", emp);
+                break;
+            }
+        }
+        model.addAttribute("livros", livros);
+        model.addAttribute("usuarios", usuarios);
+        return "paginas_edicao/editarEmprestimo";
+    }
 
+    @PutMapping("/editarEmprestimo/{id}")
+    public String atualizarEmprestimo(@PathVariable("id") int id, @ModelAttribute Emprestimo emprestimoAtualizado,
+                                      @RequestParam("livroId") int livroId, @RequestParam("usuarioId") int usuarioId) {
+        for (Emprestimo emp : emprestimos) {
+            if (emp.getId() == id) {
+                emp.setData_de_emprestimo(emprestimoAtualizado.getData_de_emprestimo());
+                emp.setData_de_devolucao(emprestimoAtualizado.getData_de_devolucao());
+
+                for (Livro liv : livros) {
+                    if (liv.getId() == livroId) {
+                        emp.setLivroEmprestado(liv);
+                        break;
+                    }
+                }
+                for (Usuario user : usuarios) {
+                    if (user.getId() == usuarioId) {
+                        emp.setUsuario(user);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        return "redirect:/livros/emprestimos";
+    }
+
+    //---------------DELETE-EMPRESTIMO--------------//
+    @DeleteMapping("/excluirEmprestimo/{id}")
+    @ResponseBody
+    public String excluirEmprestimo(@PathVariable("id") int id) {
+        emprestimos.removeIf(emprestimo -> emprestimo.getId() == id);
+        return "ok";
+    }
 
 
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Livro</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros}">Voltar</a>
+</nav>
+
+<h2>Editar Livro</h2>
+<p>Altere os dados abaixo e clique em atualizar.</p>
+
+<form class="form-cadastro" th:action="@{/livros/editarLivro/{id}(id=${livro.id})}" th:object="${livro}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="campo-input">
+        <label for="titulo"><strong>Título:</strong></label><br>
+        <input type="text" id="titulo" th:field="*{titulo}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="autor"><strong>Autor:</strong></label><br>
+        <input type="text" id="autor" th:field="*{autor}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="data"><strong>Data de Lançamento:</strong></label><br>
+        <input type="text" id="data" th:field="*{data_de_lancamento}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="categoria"><strong>Categoria:</strong></label><br>
+        <select id="categoria" name="categoriaId" required>
+            <option value="">Selecione uma categoria...</option>
+            <option th:each="cat : ${categorias}"
+                    th:value="${cat.id}"
+                    th:text="${cat.nome}"
+                    th:selected="${livro.categoria != null and cat.id == livro.categoria.id}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Atualizar Livro
+    </button>
+</form>
+
+</body>
+</html>

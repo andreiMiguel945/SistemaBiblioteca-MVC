@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Categoria</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/categorias}">Voltar</a>
+</nav>
+
+<h2>Editar Categoria</h2>
+<p>Altere o nome da categoria abaixo e clique em atualizar.</p>
+
+<form class="form-cadastro" th:action="@{/livros/editarCategoria/{id}(id=${categoria.id})}" th:object="${categoria}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="campo-input">
+        <label for="nome"><strong>Nome da Categoria:</strong></label><br>
+        <input type="text" id="nome" th:field="*{nome}" required>
+    </div>
+
+    <div class="campo-input">
+        <label for="descricao"><strong>Descrição:</strong></label><br>
+        <input type="text" id="descricao" th:field="*{descricao}" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Atualizar Categoria
+    </button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Autor</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+    <a th:href="@{/livros/autores}">Voltar</a>
+</nav>
+
+<h2>Editar Autor</h2>
+<p>Altere os dados do autor abaixo e clique em atualizar.</p>
+
+<form class="form-cadastro" th:action="@{/livros/editarAutor/{id}(id=${autor.id})}" th:object="${autor}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div class="campo-input">
+        <label for="nome"><strong>Nome:</strong></label><br>
+        <input type="text" id="nome" th:field="*{nome}" required>
+    </div>
+    <div class="campo-input">
+        <Label for="nacionalidade"><strong>Nacionalidade</strong></Label><br>
+        <input type="text" id="nacionalidade" th:field="*{nacionalidade}" required>
+    </div>
+
+    <button type="submit" class="button-cadastro">
+        Atualizar Autor
+    </button>
+</form>
+
+</body>
+</html>
